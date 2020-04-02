@@ -16,7 +16,7 @@ router.post("/add", async (req, res) => {
   await task.save();
   res.redirect("/");
 });
-router.get("/delete/:_id", async (req, res) => {
+router.get("/delete/:id", async (req, res) => {
   //console.log(req.params)
   const { id } = req.params;
   await Task.remove({ _id: id });
