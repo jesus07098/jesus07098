@@ -16,6 +16,25 @@ router.post("/add", async (req, res) => {
   await task.save();
   res.redirect("/");
 });
+
+router.get("/turn/:id", async (req, res) => {
+  const { id } = req.params;
+  const task = await Task.findById(id);
+  task.status = !task.status;
+  await task.save();
+  res.redirect("/");
+  console.log(task);
+});
+
+router.get('/edit/:id', async (req, res) =>{
+  const { id } = req.params;
+  const task = await Task.findById(id);
+  res.render('edit', {
+    task
+  });
+});
+
+
 router.get("/delete/:id", async (req, res) => {
   //console.log(req.params)
   const { id } = req.params;
